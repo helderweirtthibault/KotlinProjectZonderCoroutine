@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/networkNavFragment">
+
+
+    <fragment
+        android:id="@+id/networkCallFragment"
+        android:name="com.example.kotlinperformantieapp.NetworkCallFragment"
+        android:label="fragment_network_call"
+        tools:layout="@layout/fragment_network_call" />
+    <fragment
+        android:id="@+id/networkCoroutineCallFragment"
+        android:name="com.example.kotlinperformantieapp.NetworkCoroutineCallFragment"
+        android:label="fragment_network_coroutine_call"
+        tools:layout="@layout/fragment_network_coroutine_call" />
+    <fragment
+        android:id="@+id/networkNavFragment"
+        android:name="com.example.kotlinperformantieapp.NetworkNavFragment"
+        android:label="NetworkNavFragment" >
+        <action
+            android:id="@+id/action_networkNavFragment_to_networkCallFragment"
+            app:destination="@id/networkCallFragment" />
+        <action
+            android:id="@+id/action_networkNavFragment_to_networkCoroutineCallFragment"
+            app:destination="@id/networkCoroutineCallFragment" />
+    </fragment>
+</navigation>

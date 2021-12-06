@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Hoofdscherm"
+    android:background="@color/bgLight">
+
+    <LinearLayout
+        android:layout_width="381dp"
+        android:layout_height="560dp"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="60dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Bachelorproef performantie onderzoek"
+            android:textAlignment="center"
+            android:textColor="@color/bgBlue"
+            android:textSize="18dp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="95dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Kotlin"
+            android:textAlignment="center"
+            android:textColor="@color/bgBlue"
+            android:textSize="26dp">
+
+        </TextView>
+
+        <Button
+            android:id="@+id/netwerkButton"
+            android:layout_width="match_parent"
+            android:layout_height="113dp"
+            android:backgroundTint="@color/bgBlue"
+            android:textColor="@color/white"
+            android:text="Start">
+
+        </Button>
+
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

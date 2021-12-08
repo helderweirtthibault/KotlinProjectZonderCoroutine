@@ -1,28 +1,23 @@
 package com.example.kotlinperformantieapp
 
+import NetwerkDataAdapter
+import android.R
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.kotlinperformantieapp.databinding.FragmentNetworkCallBinding
-import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import okhttp3.*
-import java.io.IOException
+import java.util.ArrayList
 
 
 class NetworkCallFragment : Fragment() {
-
-    private var x = Job()
-    private val jobCoScopeVanX = CoroutineScope(x + Dispatchers.IO)
 
     private val viewModel: NetworkCallViewModel by lazy {
         ViewModelProvider(this).get(NetworkCallViewModel::class.java)
@@ -37,6 +32,10 @@ class NetworkCallFragment : Fragment() {
         binding = FragmentNetworkCallBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        viewModel.callRunNetCall()
+
+//        listView!!.adapter = NetwerkDataAdapter(this.requireContext(), viewModel.responseMultiple.value as ArrayList<String>)
+
 
 
 //        // Inflate the layout for this fragment

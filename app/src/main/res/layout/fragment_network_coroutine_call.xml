@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".NetworkCoroutineCallFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.kotlinperformantieapp.NetworkCallViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textCoCall1"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:textSize="13dp"
+            android:text="@{viewModel.response}"></TextView>
+        <TextView
+            android:id="@+id/textCoCall2"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:textSize="13dp"
+            android:text="@{viewModel.response2}"></TextView>
+        <TextView
+            android:id="@+id/text1CoCall3"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:textSize="13dp"
+            android:text="@{viewModel.response3}"></TextView>
+    </LinearLayout>
+</layout>

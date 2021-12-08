@@ -1,8 +1,13 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
 
+
+plugins{
+
+    id("com.android.application")
+    id("kotlin-android")
+
+    id("kotlin-kapt")
+    id("kotlin-android-extensions")
+}
 android {
     dataBinding{
         enabled = true
@@ -12,7 +17,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.kotlinperformantieapp"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -56,6 +61,11 @@ dependencies {
     // Glide
     implementation "com.github.bumptech.glide:glide:$version_glide"
 
+//For runBlockingTest, CoroutineDispatcher etc.
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2"
+//For InstantTaskExecutorRule
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
 
@@ -86,7 +96,24 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.+'
+    implementation 'com.google.android.gms:play-services-maps:18.0.0'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation "org.mockito:mockito-core:3.3.3"
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.4'
+
+    //Espresso
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.3.0"
+    implementation "androidx.test.espresso:espresso-idling-resource:3.3.0"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:3.3.0"
+
+    androidTestImplementation 'androidx.test:rules:1.4.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+
+    implementation 'com.google.android.gms:play-services-maps:18.0.0'
 }

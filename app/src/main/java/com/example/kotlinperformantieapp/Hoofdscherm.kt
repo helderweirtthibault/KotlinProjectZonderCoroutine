@@ -27,6 +27,10 @@ class Hoofdscherm : AppCompatActivity() {
             startActivity(Intent(this, Netwerkscherm::class.java))
         }
 
+        binding.mapsButton.setOnClickListener{
+            startActivity(Intent(this, MapsActivity::class.java))
+        }
+
 //        binding = DataBindingUtil.setContentView(this, R.layout.activity_hoofdscherm)
 
 

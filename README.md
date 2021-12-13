@@ -5,10 +5,11 @@ Er werd gebruikgemaakt van drie verschillende WeatherAPIs en van de Google Maps 
 In de applicatie zijn vele verschillende werkingen getest of geëxperimenteerd, en is het mogelijk dat sommige code niet relevant meer is voor de huidige werking.
 De hardware belasting zal worden gemeten met de profiler tools en de meerwaarde in netwerkcommunicatie via testen.
 
+Uiteindelijk wordt om accurate gegevens de applicatie opgesplist in 2 applicaties waarbij één coroutines bevat. Dit voorkomt dat de data beïnvloedt wordt door de cache.
+In het totaal worden dus 3 applicaties getest (+ retrofit Mars applicatie). 
+
 ## TODO - planning
 
-* Toevoegen van crypto API voor zwaardere GET requests voor betere vergelijkingen
-* Gebruik maken van retrofit werkwijze of bestaande applicatie gebruiken indien nood aan tijd
 * Applicatie converteren naar Java
 * Verzamelen gegevens en vergelijken
 * Proof-of-concept uitwerken in de paper (pdf)

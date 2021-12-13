@@ -12,48 +12,26 @@ import java.io.IOException
 /**
  * The [ViewModel] that is attached to the [OverviewFragment].
  */
-class NetworkCallViewModel(private val dispatcher: CoroutineDispatcher) : ViewModel() {
+class CryptoCallViewModel(private val dispatcher: CoroutineDispatcher) : ViewModel() {
 
     constructor():this(Dispatchers.IO)
 
-
-
-    private var lijst = arrayListOf<String>(
-            "http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=19d9efa32424ab80a516e54af04e0b9d",
-    "http://api.weatherstack.com/current?access_key=50f1811cde203510e723a87074312b96&query=New%20York",
-    "https://api.weatherapi.com/v1/current.json?key=8b356f580be9479cb30162113210612&q=Paris&aqi=no")
+    var url = "http://api2.binance.com/api/v3/ticker/24hr"
 
     private var x = Job()
-    private val jobCoScopeVanX = CoroutineScope(x + Dispatchers.IO)
+    private val jobCoScopeVanX = CoroutineScope(x + dispatcher)
 
     // The internal MutableLiveData String that stores the most recent response
     private val _response = MutableLiveData<String>()
-
-    // The external immutable LiveData for the response String
     val response: LiveData<String>
-        get() = _response
-
-    private val _response2 = MutableLiveData<String>()
-
-    // The external immutable LiveData for the response String
-    val response2: LiveData<String>
-        get() = _response
-
-    private val _response3 = MutableLiveData<String>()
-
-    // The external immutable LiveData for the response String
-    val response3: LiveData<String>
         get() = _response
 
 
     fun callRunNetCall(){
-        runNetCall("http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=19d9efa32424ab80a516e54af04e0b9d")
-        runNetCall("http://api.weatherstack.com/current?access_key=50f1811cde203510e723a87074312b96&query=New%20York")
-        runNetCall("https://api.weatherapi.com/v1/current.json?key=8b356f580be9479cb30162113210612&q=Paris&aqi=no")
+        runNetCall(url)
     }
 
      private fun runNetCall(url: String) {
-
         val client = OkHttpClient()
         val request = Request.Builder()
             .url(url)
@@ -62,13 +40,7 @@ class NetworkCallViewModel(private val dispatcher: CoroutineDispatcher) : ViewMo
         client.newCall(request).enqueue(object : okhttp3.Callback {
             override fun onFailure(call: okhttp3.Call, e: IOException) {}
             override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
-                if(url.contains("openweather")){
-                    _response.postValue(response.body()?.string())
-                }else if(url.contains("weatherstack")){
-                    _response2.postValue(response.body()?.string())
-                }else if (url.contains("weatherapi")){
-                    _response3.postValue(response.body()?.string())
-                }
+                _response.postValue(response.body()?.string())
             }
         })
     }
@@ -76,9 +48,8 @@ class NetworkCallViewModel(private val dispatcher: CoroutineDispatcher) : ViewMo
     fun callWithCoroutine(){
         jobCoScopeVanX.launch {
             withContext(Dispatchers.IO){
-                runSuspendNetCall("http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=19d9efa32424ab80a516e54af04e0b9d")
-                runSuspendNetCall("http://api.weatherstack.com/current?access_key=50f1811cde203510e723a87074312b96&query=New%20York")
-                runSuspendNetCall("https://api.weatherapi.com/v1/current.json?key=8b356f580be9479cb30162113210612&q=Paris&aqi=no")
+                delay(3000)
+                runNetCall(url)
             }
         }
     }
@@ -92,13 +63,7 @@ class NetworkCallViewModel(private val dispatcher: CoroutineDispatcher) : ViewMo
         client.newCall(request).enqueue(object : okhttp3.Callback {
             override fun onFailure(call: okhttp3.Call, e: IOException) {}
             override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
-                if(url.contains("openweather")){
-                    _response.postValue(response.body()?.string())
-                }else if(url.contains("weatherstack")){
-                    _response2.postValue(response.body()?.string())
-                }else if (url.contains("weatherapi")){
-                    _response3.postValue(response.body()?.string())
-                }
+                _response.postValue(response.body()?.string())
             }
         })
     }
@@ -125,7 +90,7 @@ class NetworkCallViewModel(private val dispatcher: CoroutineDispatcher) : ViewMo
     val userDataLive: LiveData<Any> = _userDataLiveMetCo
 
     fun saveSessionData() {
-        runNetCallTest("http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=19d9efa32424ab80a516e54af04e0b9d")
+        runNetCallTest(url)
     }
 
     private fun runNetCallTest(url: String) {
@@ -144,7 +109,7 @@ class NetworkCallViewModel(private val dispatcher: CoroutineDispatcher) : ViewMo
 
     suspend fun saveSessionLiveData() {
         viewModelScope.launch(dispatcher) {
-            runSuspendNetCallTest("http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=19d9efa32424ab80a516e54af04e0b9d")
+            runSuspendNetCallTest(url)
         }
     }
 

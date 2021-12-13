@@ -24,6 +24,9 @@ class NetworkNavFragment : Fragment() {
         binding.apiCoButton.setOnClickListener{ view ->
             Navigation.findNavController(view).navigate(R.id.action_networkNavFragment_to_networkCoroutineCallFragment);
         }
+        binding.cyptoButton.setOnClickListener{ view ->
+            Navigation.findNavController(view).navigate(R.id.action_networkNavFragment_to_cryptoCallFragment);
+        }
         return binding.root
     }
 

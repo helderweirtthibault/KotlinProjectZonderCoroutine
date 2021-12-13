@@ -42,6 +42,16 @@
 
             </Button>
 
+            <Button
+                android:id="@+id/cyptoButton"
+                android:layout_width="match_parent"
+                android:layout_height="113dp"
+                android:backgroundTint="@color/bgBlue"
+                android:text="API met coroutine"
+                android:textColor="@color/white">
+
+            </Button>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
